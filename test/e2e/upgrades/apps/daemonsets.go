@@ -63,6 +63,9 @@ func (t *DaemonSetUpgradeTest) Setup(ctx context.Context, f *framework.Framework
 	err = wait.PollWithContext(ctx, framework.Poll, framework.PodStartTimeout, func(ctx context.Context) (bool, error) {
 		return e2edaemonset.CheckRunningOnAllNodes(ctx, f, t.daemonSet)
 	})
+	err = wait.PollWithContext(ctx, framework.Poll, framework.PodStartTimeout, func(ctx context.Context) (bool, error) {
+		return e2edaemonset.CheckRunningOnAllNodes(ctx, f, t.daemonSet)
+	})
 	framework.ExpectNoError(err)
 
 	ginkgo.By("Validating the DaemonSet after creation")
