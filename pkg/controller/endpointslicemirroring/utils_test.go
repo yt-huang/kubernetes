@@ -30,6 +30,7 @@ import (
 	"k8s.io/client-go/kubernetes/fake"
 	k8stesting "k8s.io/client-go/testing"
 	"k8s.io/utils/pointer"
+	"k8s.io/utils/ptr"
 )
 
 func TestNewEndpointSlice(t *testing.T) {
@@ -206,7 +207,7 @@ func TestAddressToEndpoint(t *testing.T) {
 		Addresses: []string{"10.1.2.3"},
 		Hostname:  pointer.String("foo"),
 		Conditions: discovery.EndpointConditions{
-			Ready: pointer.BoolPtr(true),
+			Ready: ptr.To(true),
 		},
 		TargetRef: &v1.ObjectReference{
 			APIVersion: "v1",

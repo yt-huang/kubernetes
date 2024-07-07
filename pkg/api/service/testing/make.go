@@ -20,6 +20,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/intstr"
 	utilpointer "k8s.io/utils/pointer"
+	"k8s.io/utils/ptr"
 
 	api "k8s.io/kubernetes/pkg/apis/core"
 )
@@ -83,7 +84,7 @@ func SetTypeNodePort(svc *api.Service) {
 func SetTypeLoadBalancer(svc *api.Service) {
 	svc.Spec.Type = api.ServiceTypeLoadBalancer
 	svc.Spec.ExternalTrafficPolicy = api.ServiceExternalTrafficPolicyCluster
-	svc.Spec.AllocateLoadBalancerNodePorts = utilpointer.BoolPtr(true)
+	svc.Spec.AllocateLoadBalancerNodePorts = ptr.To(true)
 	svc.Spec.ExternalName = ""
 	internalTrafficPolicy := api.ServiceInternalTrafficPolicyCluster
 	svc.Spec.InternalTrafficPolicy = &internalTrafficPolicy
